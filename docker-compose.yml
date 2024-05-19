@@ -1,0 +1,23 @@
+services:
+  mongodb:
+    image: mongo
+    container_name: mongodb
+    ports:
+      - 27017:27017
+    volumes:
+      - mongo:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=tblynxx
+      - MONGO_INITDB_ROOT_PASSWORD=tblynxx
+  mongo-express:
+    image: mongo-express
+    container_name: mongo_express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      - ME_CONFIG_MONGODB_ADMINUSERNAME=tblynxx
+      - ME_CONFIG_MONGODB_ADMINPASSWORD=tblynxx
+      - ME_CONFIG_MONGODB_SERVER=mongodb
+volumes:
+  mongo: {}
